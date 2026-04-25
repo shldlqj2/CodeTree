@@ -48,28 +48,28 @@ for row in range(n):
     for col in range(n):
         if grid[row][col]==0 and visited[row][col]:
             queue=deque()
-            queue.append((row,col,0))#r,c,wallmove
+            queue.append((row,col,0,0))#r,c,wallmove,currcnt
             
             newvisited=[row[:] for row in visited]
-            tcnt=0
+
 
             while queue:
-                cr,cc,wallmove=queue.popleft()
+                cr,cc,wallmove,currcnt=queue.popleft()
                 for i in range(4):
                     nr,nc=cr+dr[i],cc+dc[i]
 
                     if 0<=nr<n and 0<=nc<n and not newvisited[nr][nc]:
                         if grid[nr][nc]==0:
-                            tcnt+=1
-                            queue.append((nr,nc,wallmove))
+                            queue.append((nr,nc,wallmove,currcnt+1))
                             newvisited[nr][nc]=True
                             
                         if grid[nr][nc]==1:
                             if wallmove<m:
-                                queue.append((nr,nc,wallmove+1))
+                                queue.append((nr,nc,wallmove+1,currcnt))
                                 newvisited[nr][nc]=True
+                tempcnt=max(tempcnt,currcnt)
 
-            tempcnt=max(tempcnt,tcnt)
+            
 
 print(cnt+tempcnt+m)
                             
