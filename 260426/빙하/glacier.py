@@ -15,29 +15,27 @@ while True:
 
     queue=deque()
 
+    queue.append((0,0))
+
     melt=set()
 
-    for row in range(n):
-        for col in range(m):
-            if a[row][col]==0:
-                queue.append((row,col))
+    visited=[[False]*m for _ in range(n)]
+    visited[0][0]=True
 
     while queue:
         cr,cc=queue.popleft()
-        cnt=0
         ice=[]
 
         for i in range(4):
             nr,nc=cr+dr[i],cc+dc[i]
-            if 0<=nr<n and 0<=nc<m and a[nr][nc]==1:
-                cnt+=1
-                ice.append((nr,nc))
+            if 0<=nr<n and 0<=nc<m and not visited[nr][nc]:
+                if a[nr][nc]==0:
+                    queue.append((nr,nc))
+                else:
+                    melt.add((nr,nc))
+                visited[nr][nc]=True
 
-        if cnt==4:
-            continue
-        else:
-            for i in ice:
-                melt.add(i)
+        
     
     if len(melt)==0:
         break
