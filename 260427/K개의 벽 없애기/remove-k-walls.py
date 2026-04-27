@@ -23,7 +23,7 @@ for row in range(n):
         if grid[row][col]==1:
             wallRCS.append((row,col))
 
-wallRCS=list(combinations(wallRCS,2))
+wallRCS=list(combinations(wallRCS,k))
 
 
 for removeWall in wallRCS:
