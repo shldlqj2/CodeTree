@@ -9,7 +9,6 @@ for _ in range(n):
 # Please write your code here.
 
 lines=list(zip(x1,x2))
-linescnt=len(lines)
 subline=[]
 
 
@@ -19,8 +18,7 @@ def selectLines(cnt,sellines):
     global result
     result=max(result,sellines)
 
-    if cnt==linescnt:
-        
+    if cnt==n or result==n:
         return
 
     for p1,p2 in lines:
