@@ -19,11 +19,9 @@ def routingStart(edgemap):
     return result
 
 def findMinimum(linecnt):
-    if linecnt==m:
-        return
+
 
     currresult=routingStart(curredges)
-
     cnt=0
     for i in range(len(currresult)):
         if currresult[i]!=defaultResult[i]:
@@ -35,6 +33,8 @@ def findMinimum(linecnt):
         result=min(result,linecnt)
         return        
 
+    if linecnt==m:
+        return
     
     
 
