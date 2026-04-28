@@ -18,13 +18,15 @@ result=0
 def selectLines(cnt,sellines):
     global result
     result=max(result,sellines)
+
     if cnt==linescnt:
+        
         return
 
     for p1,p2 in lines:
         skipflag=False
         for xp1,xp2 in subline:
-            if xp1<=p1<=xp2 or xp1<=p2<=xp2:
+            if xp1<=p1<=xp2 or xp1<=p2<=xp2 or p1<=xp1<=p2 or p1<=xp2<=p2:
                 skipflag=True
                 break
         if skipflag:
