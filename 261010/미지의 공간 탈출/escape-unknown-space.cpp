@@ -170,7 +170,7 @@ bool exitTW(int time) {
         for (int i = 0; i < 4; i++) {
             int nr = cr + directions[i].first;
             int nc = cc + directions[i].second;
-            if (0 <= nr && nc < 3 * tw.h + 2 && 0 <= nc && nc < 3 * tw.w + 2 && !visited[nr][nc]) {
+            if (0 <= nr && nr < 3 * tw.h + 2 && 0 <= nc && nc < 3 * tw.w + 2 && !visited[nr][nc]) {
                 if (mboardOpen[nr][nc] == 0) {
                     visited[nr][nc] = true;
                     q.push({ curr.first + 1,{ nr,nc } });
@@ -236,6 +236,8 @@ bool exitTW(int time) {
     int cr = exitTwRC.first;
     int cc = exitTwRC.second;
 
+
+
     while (backtrack[cr][cc] != startRC) {
         int nr = backtrack[cr][cc].first;
         int nc = backtrack[cr][cc].second;
@@ -282,9 +284,8 @@ void exitMap(int time) {
                     for (int i = 1; i <= move; i++) {
                         int mr2 = it.r + i * (directions[it.direction].first);
                         int mc2 = it.c + i * (directions[it.direction].second);
-                        if (board[mr2][mc2] == 1 || board[mr2][mc2] == 4) {
-                            break;
-                        }
+                        if (mr2 < 0 || mr2 >= N || mc2 < 0 || mc2 >= N) break;
+                        if (board[mr2][mc2] != 0) break;
                         mr = mr2;
                         mc = mc2;
                     }
