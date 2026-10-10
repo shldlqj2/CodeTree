@@ -153,63 +153,8 @@ void startTamsa() {
     }
 
 
-    BestSelect sel[28];
+    BestSelect sel[27];
 
-    for (int i = 0; i < 1; i++) {
-        sel[27].rot = 0;
-        sel[27].rotr = 0;
-        sel[27].rotc = 0;
-        int currScore = 0;
-        bool visited[5][5] = { 0 };
-        for (int r = 0; r < 5; r++) {
-            for (int c = 0; c < 5; c++) {
-                if (!visited[r][c]) {
-                    int nowscore = 1;
-
-                    queue<QueMem> q;
-                    QueMem start;
-                    start.r = r;
-                    start.c = c;
-                    start.sameNum = board[r][c];
-
-                    q.push(start);
-                    visited[r][c] = true;
-
-                    pair<int, int> wheres[25];
-                    wheres[0] = { r,c };
-
-                    while (!q.empty())
-                    {
-                        QueMem curr = q.front();
-                        q.pop();
-                        for (int k = 0; k < 4; k++) {
-                            int nr = curr.r + directions[k].first;
-                            int nc = curr.c + directions[k].second;
-                            if (0 <= nr && nr < 5 && 0 <= nc && nc < 5 && !visited[nr][nc] &&
-                                board[nr][nc] == curr.sameNum) {
-                                visited[nr][nc] = true;
-                                QueMem next;
-                                next.r = nr;
-                                next.c = nc;
-                                next.sameNum = curr.sameNum;
-                                q.push(next);
-                                wheres[nowscore++] = { nr,nc };
-                            }
-                        }
-                    }
-
-                    if (nowscore >= 3) {
-
-                        for (int s = 0; s < nowscore; s++) {
-                            sel[27].hubos[s + currScore] = wheres[s];
-                        }
-                        currScore += nowscore;
-                    }
-                }
-            }
-        }
-        sel[27].score = currScore;
-    }
     
 
     for (int rot = 0; rot < 3; rot++) {
@@ -311,7 +256,7 @@ void startTamsa() {
         }
     }
 
-    sort(&sel[0], &sel[0]+28, [](const BestSelect &a, const BestSelect &b) {
+    sort(&sel[0], &sel[0]+27, [](const BestSelect &a, const BestSelect &b) {
         if (a.score == b.score) {
             if (a.rot == b.rot) {
                 if (a.rotc == b.rotc) {
