@@ -12,10 +12,10 @@ for i in range(2,1001):
             if i==2:
                 dp[i][j]=1
             else:
-                dp[i][j]=dp[i-1][j+1]
+                dp[i][j]=dp[i-1][j+1]%(10**9 + 7)
         elif j==9:
-            dp[i][j]=dp[i-1][j-1]
+            dp[i][j]=dp[i-1][j-1]%(10**9 + 7)
         else:
-            dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]
+            dp[i][j]=(dp[i-1][j-1]+dp[i-1][j+1])%(10**9 + 7)
 # print(dp[n])
 print(sum(dp[n])%(10**9 + 7))
